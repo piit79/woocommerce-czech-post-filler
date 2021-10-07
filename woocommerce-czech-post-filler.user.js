@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         WooCommerce Czech Post Address Filler
 // @namespace    https://github.com/piit79/woocommerce-czech-post-filler
-// @version      0.8
+// @version      0.82
 // @description  Auto-fill addresses from WooCommerce to Czech Post on-line postage web app
 // @author       piit79
 // @match        https://*/wp-admin/post.php*
@@ -291,14 +291,21 @@ function cpCheckStoredAddress() {
 function cpAddMessageDiv() {
     let container = $('.row .col-md-6:last-child .row .section.section-order:first-child');
     container.css('position', 'relative');
-    let message = $('<div id="wcCpMessage"></div>');
-    message.css('width', '100%');
-    message.css('text-align', 'center');
-    message.css('font-weight', 'bold');
-    message.css('position', 'absolute');
-    message.css('left', 0);
-    message.css('bottom', '2px');
-    container.append(message);
+
+    let messageDiv = $('<div></div>');
+    messageDiv.css('width', '100%');
+    messageDiv.css('text-align', 'center');
+    messageDiv.css('font-weight', 'bold');
+    messageDiv.css('position', 'absolute');
+    messageDiv.css('left', 0);
+    messageDiv.css('bottom', '-10px');
+
+    let messageSpan = $('<span id="wcCpMessage"></span>');
+    messageDiv.css('padding', '0 5px');
+    messageDiv.css('background-color', 'white');
+
+    messageDiv.append(messageSpan);
+    container.append(messageDiv);
 }
 
 function cpSetProduct() {
